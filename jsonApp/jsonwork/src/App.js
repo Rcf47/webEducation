@@ -1,22 +1,25 @@
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import category from "./data/category.json";
-import { nanoid } from "nanoid";
+import Home from "./Home";
+import Category from "./Category";
+import CategoryDescription from "./CategoryDescription";
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <a href="/">Main</a>
+      <header className="App-header">
+        <a className="ref" href="/">
+          Main
+        </a>
+        <a className="ref" href="/category">
+          Category
+        </a>
       </header>
-      <nav>
-        <ul>
-          {Object.values(category).map((item) => (
-            <li key={nanoid()}>
-              <a href={item.url}>{item.name}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/category/:categoryId" element={<CategoryDescription />} />
+      </Routes>
     </div>
   );
 }
